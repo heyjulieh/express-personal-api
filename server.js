@@ -55,7 +55,7 @@ app.get('/api', function apiIndex(req, res) {
   // It would be seriously overkill to save any of this to your database.
   res.json({
     areTheseAlltheEndPoints: true,
-    message: "Welcome to my Julie's personal api website! Here's what you need to know!",
+    message: "Welcome to Julie's personal api website! Here, you'll find some information about me!",
     documentationUrl: "https://github.com/heyjulieh/express-personal-api/blob/master/README.md",
     baseUrl: "https://limitless-woodland-22503.herokuapp.com/",
     endpoints: [
@@ -73,6 +73,7 @@ app.get('/api/profile', function apiProfile(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
   res.json({
+    profileImageUrl: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAiEAAAAJGE5NmE3NWQwLWIwZTYtNDYxOC1hNGY1LTBmYmI5ODhiZmZiOQ.jpg",
     gender: "Female",
     message: "Here's some basic information about me!",
     age: 29,
@@ -105,6 +106,7 @@ app.get('/api/traveledto', function apiProfile(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
   res.json({
+    locations: {
     Japan: {
       state: null,
       cityName: "Tokyo",
@@ -135,8 +137,20 @@ app.get('/api/traveledto', function apiProfile(req, res) {
       length: "5 days",
       fun: true
       }
-    });
+    }
+  });
 });
+
+// Create a new travel location
+app.post('/api/traveledto', function (req, res) {
+  // create new book with form data (`req.body`)
+  var newTravelPlan = new db.Traveled({
+    state: req.body.state,
+    cityName: req.body.cityName,
+    length: req.body.length,
+  });
+});
+
 /**********
  * SERVER *
  **********/

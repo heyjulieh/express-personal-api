@@ -24,6 +24,31 @@
           <h4><a href="/api">Read My API Documentation</a></h4>
         </div>
       </div>
+
+      div class="form-group">
+            <label for="city">City you'd like to go to</label>
+            <input type="text" class="form-control" name="city" placeholder="i.e. Bangkok">
+          </div>
+          <div class="form-group">
+            <label for="title">Country you'd like to go to</label>
+            <input type="text" class="form-control" name="country" placeholder="i.e. Thailand">
+          </div>
+
+          <button type="submit" class="btn btn-default">Let's go there!</button>
+        </form>
+        <div id='travelTarget'>
+          <!-- handlebars template -->
+          <script id="travel-template" type="text/x-handlebars-template">
+            {{#each traveledto}}
+            <hr>
+            <p>
+              <b>{{city}}</b>
+                 {{country.name}}
+              <br>
+              {{/each}}
+              <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button>
+            </p>
+          </script>
     </div>
   </body>
 </html>
