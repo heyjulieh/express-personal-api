@@ -76,6 +76,14 @@ app.get('/api/profile', function apiProfile(req, res) {
     gender: "Female",
     message: "Here's some basic information about me!",
     age: 29,
+    hometown: "Los Angeles, CA",
+    ethnicity: "Chinese",
+    currentCity: "Oakland, CA",
+    parents: {
+      mother: "Xiu Zhu Huang",
+      father: "Kent C. Huang"
+    },
+    relationshipStatus: "Taken",
     employed: true,
     placesEmployedAt: [
       {name: "Gap Inc./Banana Republic",
@@ -88,10 +96,46 @@ app.get('/api/profile', function apiProfile(req, res) {
       title: "Transit Planner",
       years: 3}
     ],
-    student: true,
+    studentAtGA: true,
     linkedInUrl: "https://www.linkedin.com/in/jliehng/",
-    baseUrl: "https://limitless-woodland-22503.herokuapp.com/",
-  })
+    })
+});
+
+app.get('/api/traveledto', function apiProfile(req, res) {
+  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
+  // It would be seriously overkill to save any of this to your database.
+  res.json({
+    Japan: {
+      state: null,
+      cityName: "Tokyo",
+      month: "February",
+      year: 2016,
+      length: "1 week",
+      fun: true},
+    UnitedStates: [
+      {state: "Utah",
+      cityName: "Salt Lake City",
+      month: "September",
+      year: 2016,
+      length: "3 days",
+      fun: true},
+      {state: "Texas",
+      cityName: "Austin",
+      month: "February",
+      year: 2017,
+      length: "3 days",
+      fun: true
+      },
+    ],
+    Canada: {
+      state: "British Columbia",
+      cityName: "Vancouver",
+      month: "August",
+      year: 2016,
+      length: "5 days",
+      fun: true
+      }
+    });
 });
 /**********
  * SERVER *
