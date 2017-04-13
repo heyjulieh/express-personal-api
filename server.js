@@ -73,15 +73,24 @@ app.get('/api/profile', function apiProfile(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
   res.json({
-    areTheseAlltheEndPoints: true,
-    message: "Welcome to my Julie's personal api website! Here's what you need to know!",
-    documentationUrl: "https://github.com/heyjulieh/express-personal-api/blob/master/README.md",
+    gender: "Female",
+    message: "Here's some basic information about me!",
+    age: 29,
+    employed: true,
+    placesEmployedAt: [
+      {name: "Gap Inc./Banana Republic",
+      title: "Inventory Planner",
+      years: 1},
+      {name: "Nelson Nygaard",
+      title: "Associate Planner",
+      years: 1},
+      {name: "San Mateo County Transit District",
+      title: "Transit Planner",
+      years: 3}
+    ],
+    student: true,
+    linkedInUrl: "https://www.linkedin.com/in/jliehng/",
     baseUrl: "https://limitless-woodland-22503.herokuapp.com/",
-    endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Everything you need to know about me"},
-      {method: "POST", path: "/api/traveledto", description: "Places I've travelled"}
-    ]
   })
 });
 /**********
