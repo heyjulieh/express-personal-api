@@ -143,11 +143,10 @@ app.get('/api/traveledto', function apiProfile(req, res) {
 
 // Create a new travel location
 app.post('/api/traveledto', function (req, res) {
-  // create new book with form data (`req.body`)
-  var newTravelPlan = new db.Traveled({
+  // create new travel location with form data (`req.body`)
+  var newTravelPlan = new db.Traveledto({
     cityName: req.body.city,
     countryName: req.body.country,
-    length: req.body.length,
   });
 });
 
