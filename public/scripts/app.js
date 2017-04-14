@@ -1,6 +1,6 @@
 console.log("Sanity Check: JS is working!");
 var $travelList;
-var allTraveledto = [];
+var allTravel = [];
 
 $(document).ready(function(){
 
