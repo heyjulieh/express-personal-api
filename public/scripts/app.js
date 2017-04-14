@@ -8,7 +8,7 @@ $(document).ready(function(){
 
   $.ajax({
     method: 'GET',
-    url: '/api/travaledto',
+    url: './api/travaledto',
     success: handleSuccess,
     error: handleError
   });

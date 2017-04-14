@@ -105,39 +105,37 @@ app.get('/api/profile', function apiProfile(req, res) {
 app.get('/api/traveledto', function apiProfile(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
-  res.json({
-    locations: {
-    Japan: {
+res.json({
+  locations: [
+      {country: "Japan",
       state: null,
-      cityName: "Tokyo",
+      city: "Tokyo",
       month: "February",
       year: 2016,
       length: "1 week",
       fun: true},
-    UnitedStates: [
-      {state: "Utah",
-      cityName: "Salt Lake City",
+      {country: "United States",
+      state: "Utah",
+      city: "Salt Lake City",
       month: "September",
       year: 2016,
       length: "3 days",
       fun: true},
-      {state: "Texas",
-      cityName: "Austin",
+      {country: "United States",
+      state: "Texas",
+      city: "Austin",
       month: "February",
       year: 2017,
       length: "3 days",
-      fun: true
-      },
-    ],
-    Canada: {
+      fun: true},
+      {country: "Canada",
       state: "British Columbia",
-      cityName: "Vancouver",
+      city: "Vancouver",
       month: "August",
       year: 2016,
       length: "5 days",
-      fun: true
-      }
-    }
+      fun: true}
+    ]
   });
 });
 
@@ -145,8 +143,50 @@ app.get('/api/traveledto', function apiProfile(req, res) {
 app.post('/api/traveledto', function (req, res) {
   // create new travel location with form data (`req.body`)
   var newTravelPlan = new db.Traveledto({
-    cityName: req.body.city,
-    countryName: req.body.country,
+    city: req.body.city,
+    country: req.body.country,
+  });
+});
+
+db.Country.findOne({name: req.body.country}, function(err, country){
+    if (err) {
+      return console.log(err);
+    }
+    // if that author doesn't exist yet, create a new one
+    if (author === null) {
+      db.Country.create({name:req.body.country}, function(err, newCountry) {
+        createCitywithCountryAndRespondTo(newCity, newCountry, res);
+      });
+    } else {
+      createCityWithCountryAndRespondTo(newCity, country, res);
+    }
+  });
+});
+
+function createBookWithAuthorAndRespondTo(book, author, res) {
+  // add this author to the book
+  book.author = author;
+  // save newBook to database
+  book.save(function(err, book){
+    if (err) {
+      return console.log("save error: " + err);
+    }
+    console.log("saved ", book.title);
+    // send back the book!
+    res.json(book);
+  });
+}
+
+// delete book
+app.delete('/api/books/:id', function (req, res) {
+  // get book id from url params (`req.params`)
+  console.log('books delete', req.params);
+  var bookId = req.params.id;
+  // find the index of the book we want to remove
+  db.Book.findOneAndRemove({ _id: bookId })
+    .populate('author')
+    .exec(function (err, deletedBook) {
+      res.json(deletedBook);
   });
 });
 

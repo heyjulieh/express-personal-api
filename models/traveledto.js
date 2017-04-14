@@ -2,9 +2,12 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var TraveledtoSchema = new Schema({
-  state: String,
-  cityName: String,
-  length: Number,
+    state: Boolean,
+    cityName: String,
+    month: String,
+    year: Number,
+    length: String,
+    fun: Boolean
 });
 
 var Traveledto = mongoose.model('Traveleto', TraveledtoSchema);
