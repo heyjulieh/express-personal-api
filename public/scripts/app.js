@@ -41,7 +41,7 @@ function getTravelHtml(travelto) {
   return `<hr>
           <p>
             <b>${traveledto.city}</b>
-            by ${(traveledto.CountrySchemay) ? traveledto.country.name : 'null'}
+            by ${(traveledto.country) ? traveledto.country.name : 'null'}
             <br>
 
             <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
@@ -50,7 +50,7 @@ function getTravelHtml(travelto) {
 }
 
 function getAllTravelHtml(traveledto) {
-  return books.map(getTravelHtml).join("");
+  return traveledto.map(getTravelHtml).join("");
 }
 
 // helper function to render all posts to view
@@ -63,7 +63,7 @@ function render () {
   var travelHtml = getAllTravelHtml(allTravel);
 
   // append html to the view
-  $booksList.append(travelHtml);
+  $travelList.append(travelHtml);
 }
 
 function handleSuccess(json) {
@@ -72,7 +72,7 @@ function handleSuccess(json) {
 }
 
 function handleError(e) {
-  console.log('uh oh');
+  console.log('Whoops, something does not work!');
   $('#travelTarget').text('Failed to load travel locations.');
 }
 
