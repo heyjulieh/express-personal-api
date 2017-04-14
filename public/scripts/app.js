@@ -44,7 +44,7 @@ function getTravelHtml(travelto) {
             by ${(traveledto.country) ? traveledto.country.name : 'null'}
             <br>
 
-            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
+            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${traveledto._id}>Delete</button>
           </p>
           `;
 }
@@ -56,12 +56,8 @@ function getAllTravelHtml(traveledto) {
 // helper function to render all posts to view
 // note: we empty and re-render the collection each time our post data changes
 function render () {
-  // empty existing books from view
   $travelList.empty();
-
-  // pass `allBooks` into the template function
   var travelHtml = getAllTravelHtml(allTravel);
-
   // append html to the view
   $travelList.append(travelHtml);
 }
@@ -87,15 +83,15 @@ function newTravelError() {
 }
 
 function deleteTravelSuccess(json) {
-  var traveledto = json;
+  var traveled = json;
   console.log(json);
-  var travelId = traveledto._id;
+  var travelId = traveled._id;
   console.log('Delete travel location', travelId);
-  // find the book with the correct ID and remove it from our allBooks array
+  // find the location with the correct ID and remove it from our allTravel array
   for(var index = 0; index < allTravel.length; index++) {
     if(allTravel[index]._id === travelId) {
       allTravel.splice(index, 1);
-      break;  // we found our book - no reason to keep searching (this is why we didn't use forEach)
+      break;  // we found our travel location - no reason to keep searching (this is why we didn't use forEach)
     }
   }
   render();
