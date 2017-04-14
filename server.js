@@ -145,8 +145,8 @@ app.get('/api/traveledto', function apiProfile(req, res) {
 app.post('/api/traveledto', function (req, res) {
   // create new book with form data (`req.body`)
   var newTravelPlan = new db.Traveled({
-    state: req.body.state,
-    cityName: req.body.cityName,
+    cityName: req.body.city,
+    countryName: req.body.country,
     length: req.body.length,
   });
 });
